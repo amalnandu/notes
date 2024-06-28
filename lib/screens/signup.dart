@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -7,14 +6,13 @@ class Signup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var name = TextEditingController();
+    var email = TextEditingController();
+    var password = TextEditingController();
+    var confirm_pw = TextEditingController();
 
-    var name=TextEditingController();
-    var email=TextEditingController();
-    var password=TextEditingController();
-    var confirm_pw=TextEditingController();
-
-    var ht=MediaQuery.of(context).size.height;
-    var wd= MediaQuery.of(context).size.width;
+    var ht = MediaQuery.of(context).size.height;
+    var wd = MediaQuery.of(context).size.width;
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -31,11 +29,9 @@ class Signup extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-
             SizedBox(
               height: ht * 0.07,
             ),
-
             Center(
               child: Container(
                 height: ht * 0.6,
@@ -51,7 +47,8 @@ class Signup extends StatelessWidget {
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
                             'Sign up',
-                            style: GoogleFonts.aBeeZee(fontWeight: FontWeight.bold),
+                            style: GoogleFonts.aBeeZee(
+                                fontWeight: FontWeight.bold),
                           ),
                         ),
                         Padding(
@@ -60,7 +57,8 @@ class Signup extends StatelessWidget {
                           child: TextFormField(
                             controller: name,
                             decoration: InputDecoration(
-                                labelText: 'Enter your name', border: OutlineInputBorder()),
+                                labelText: 'Enter your name',
+                                border: OutlineInputBorder()),
                           ),
                         ),
                         Padding(
@@ -69,7 +67,8 @@ class Signup extends StatelessWidget {
                           child: TextFormField(
                             controller: email,
                             decoration: InputDecoration(
-                                labelText: 'Email', border: OutlineInputBorder()),
+                                labelText: 'Email',
+                                border: OutlineInputBorder()),
                           ),
                         ),
                         SizedBox(
@@ -82,11 +81,10 @@ class Signup extends StatelessWidget {
                             controller: password,
                             decoration: InputDecoration(
                                 labelText: 'Password',
+                                suffixIcon: Icon(Icons.remove_red_eye),
                                 border: OutlineInputBorder()),
                           ),
                         ),
-
-
                         Padding(
                           padding: const EdgeInsets.symmetric(
                               vertical: 8.0, horizontal: 15),
@@ -94,10 +92,16 @@ class Signup extends StatelessWidget {
                             controller: password,
                             decoration: InputDecoration(
                                 labelText: 'Confirm Password',
+                                suffixIcon: IconButton(
+                                  icon: Icon(Icons.remove_red_eye),
+                                  onPressed: () {},
+                                ),
                                 border: OutlineInputBorder()),
                           ),
                         ),
-                      SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                         SizedBox(
                           height: ht * 0.05,
                           width: (wd * 0.8),
@@ -108,12 +112,20 @@ class Signup extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(3)),
                               foregroundColor: Colors.white,
                               backgroundColor: Colors.black, // text color
-                              elevation: 3, // button's elevation when it's pressed
+                              elevation:
+                                  3, // button's elevation when it's pressed
                             ),
                             child: const Text('Sign up'),
                           ),
                         ),
-
+                        SizedBox(
+                          height: 10,
+                        ),
+                        TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text("Back to login"))
                       ],
                     ),
                   ),

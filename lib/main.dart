@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:notes/screens/home.dart';
 import 'package:notes/screens/login.dart';
 import 'package:notes/screens/signup.dart';
+import 'package:notes/screens/verify_pw.dart';
 
 void main(){
   runApp(Myapp());
@@ -15,7 +16,7 @@ class Myapp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Signup(),
+      home: Verify_password(),
     );
   }
 }
