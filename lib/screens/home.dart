@@ -6,7 +6,13 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Notes'),),
+      appBar: AppBar(title: Text('Notes'),
+      actions: [
+        IconButton(onPressed: (){
+
+        }, icon: Icon(Icons.exit_to_app))
+      ],),
+
 
     );
   }

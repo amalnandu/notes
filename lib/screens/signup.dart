@@ -51,23 +51,23 @@ class Signup extends StatelessWidget {
                                 fontWeight: FontWeight.bold),
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 8.0, horizontal: 15),
-                          child: TextFormField(
-                            controller: name,
-                            decoration: InputDecoration(
-                                labelText: 'Enter your name',
-                                border: OutlineInputBorder()),
-                          ),
-                        ),
+                        // Padding(
+                        //   padding: const EdgeInsets.symmetric(
+                        //       vertical: 8.0, horizontal: 15),
+                        //   child: TextFormField(
+                        //     controller: name,
+                        //     decoration: InputDecoration(
+                        //         labelText: 'Enter your name',
+                        //         border: OutlineInputBorder()),
+                        //   ),
+                        // ),
                         Padding(
                           padding: const EdgeInsets.symmetric(
                               vertical: 8.0, horizontal: 15),
                           child: TextFormField(
                             controller: email,
                             decoration: InputDecoration(
-                                labelText: 'Email',
+                                labelText: 'Enter your Email',
                                 border: OutlineInputBorder()),
                           ),
                         ),
@@ -80,8 +80,14 @@ class Signup extends StatelessWidget {
                           child: TextFormField(
                             controller: password,
                             decoration: InputDecoration(
-                                labelText: 'Password',
-                                suffixIcon: Icon(Icons.remove_red_eye),
+                                labelText: 'Enter your Password',
+                                suffixIcon: IconButton(
+                                    onPressed: (){
+
+                                    },
+
+                                    icon: Icon(Icons.remove_red_eye)
+                                    ),
                                 border: OutlineInputBorder()),
                           ),
                         ),
@@ -135,6 +141,24 @@ class Signup extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+
+
+class Password_Field extends StatefulWidget {
+   Password_Field({super.key});
+
+  @override
+  State<Password_Field> createState() => _Password_FieldState();
+}
+
+class _Password_FieldState extends State<Password_Field> {
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: ,
     );
   }
 }

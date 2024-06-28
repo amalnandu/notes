@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:notes/google_auth/Auth.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
@@ -77,7 +78,9 @@ class LoginPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         TextButton(
-                            onPressed: () {}, child: Text("Forgot Password?")),
+                            onPressed: () {
+                              Navigator.of(context).pushNamed('/forgot');
+                            }, child: Text("Forgot Password?")),
                         SizedBox(
                           width: 10,
                         ),
@@ -87,7 +90,10 @@ class LoginPage extends StatelessWidget {
                       height: ht * 0.05,
                       width: (wd * 0.8),
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () async{
+                          var auth =  AuthService();
+                          var user= await auth.loginWithEmail( email.text, pw.text);
+                        },
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(3)),
@@ -112,7 +118,9 @@ class LoginPage extends StatelessWidget {
                       height: ht * 0.05,
                       width: (wd * 0.8),
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () async{
+
+                        },
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(3)),
@@ -131,7 +139,9 @@ class LoginPage extends StatelessWidget {
                       children: [
                         Text("Don't have an account?"),
                         TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).pushNamed('/signup');
+                            },
                             child: Text(
                               "Signup",
                               style: TextStyle(fontWeight: FontWeight.bold),
