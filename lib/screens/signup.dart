@@ -1,15 +1,25 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Signup extends StatelessWidget {
+import '../google_auth/Auth.dart';
+
+class Signup extends StatefulWidget {
   const Signup({super.key});
 
   @override
+  State<Signup> createState() => _SignupState();
+}
+
+class _SignupState extends State<Signup> {
+  @override
   Widget build(BuildContext context) {
-    var name = TextEditingController();
-    var email = TextEditingController();
-    var password = TextEditingController();
-    var confirm_pw = TextEditingController();
+    var _email = TextEditingController();
+    var _password = TextEditingController();
+    var _confirm_pw = TextEditingController();
+
+    final _authService = AuthService();
+    String _message = '';
 
     var ht = MediaQuery.of(context).size.height;
     var wd = MediaQuery.of(context).size.width;
@@ -65,7 +75,7 @@ class Signup extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               vertical: 8.0, horizontal: 15),
                           child: TextFormField(
-                            controller: email,
+                            controller: _email,
                             decoration: InputDecoration(
                                 labelText: 'Enter your Email',
                                 border: OutlineInputBorder()),
@@ -78,16 +88,12 @@ class Signup extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               vertical: 8.0, horizontal: 15),
                           child: TextFormField(
-                            controller: password,
+                            controller: _password,
                             decoration: InputDecoration(
                                 labelText: 'Enter your Password',
                                 suffixIcon: IconButton(
-                                    onPressed: (){
-
-                                    },
-
-                                    icon: Icon(Icons.remove_red_eye)
-                                    ),
+                                    onPressed: () {},
+                                    icon: Icon(Icons.remove_red_eye)),
                                 border: OutlineInputBorder()),
                           ),
                         ),
@@ -95,7 +101,7 @@ class Signup extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               vertical: 8.0, horizontal: 15),
                           child: TextFormField(
-                            controller: password,
+                            controller: _confirm_pw,
                             decoration: InputDecoration(
                                 labelText: 'Confirm Password',
                                 suffixIcon: IconButton(
@@ -112,7 +118,26 @@ class Signup extends StatelessWidget {
                           height: ht * 0.05,
                           width: (wd * 0.8),
                           child: ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () async {
+                              if (_password.text != _confirm_pw.text) {
+                                setState(() {
+                                  _message = "Passwords do not match";
+                                });
+                              }
+                              if (_password.text == _confirm_pw.text) {
+                                User? user = await _authService.signUpWithEmail(
+                                  _email.text,
+                                  _password.text,
+                                );
+
+                                if (user != null) {
+                                  setState(() {
+                                    _message =
+                                        'A verification email has been sent to ${_email.text}. Please verify your email before logging in.';
+                                  });
+                                }
+                              }
+                            },
                             style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(3)),
@@ -121,7 +146,7 @@ class Signup extends StatelessWidget {
                               elevation:
                                   3, // button's elevation when it's pressed
                             ),
-                            child: const Text('Sign up'),
+                            child: const Text('Verify & Sign up'),
                           ),
                         ),
                         SizedBox(
@@ -131,7 +156,17 @@ class Signup extends StatelessWidget {
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
-                            child: Text("Back to login"))
+                            child: Text("Back to login")),
+
+
+                        if (_message.isNotEmpty)
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 16.0),
+                            child: Text(
+                              _message,
+                              style: TextStyle(color: Colors.red),
+                            ),
+                          ),
                       ],
                     ),
                   ),
@@ -145,10 +180,8 @@ class Signup extends StatelessWidget {
   }
 }
 
-
-
 class Password_Field extends StatefulWidget {
-   Password_Field({super.key});
+  Password_Field({super.key});
 
   @override
   State<Password_Field> createState() => _Password_FieldState();
@@ -157,8 +190,6 @@ class Password_Field extends StatefulWidget {
 class _Password_FieldState extends State<Password_Field> {
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: ,
-    );
+    return TextFormField();
   }
 }

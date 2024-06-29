@@ -32,6 +32,7 @@ class Myapp extends StatelessWidget {
         '/signup':(context)=>Signup(),
         '/verify':(context)=>Verify_password(),
         '/forgot':(context)=>Forgot_Password(),
+        '/home':(context)=>Home(),
 
       },
 

@@ -42,9 +42,7 @@ class LoginPage extends StatelessWidget {
               child: Card(
                 child: Column(
                   children: [
-                    SizedBox(
-                      height: 10,
-                    ),
+
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
@@ -61,9 +59,7 @@ class LoginPage extends StatelessWidget {
                             labelText: 'Email', border: OutlineInputBorder()),
                       ),
                     ),
-                    SizedBox(
-                      height: 10,
-                    ),
+
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           vertical: 8.0, horizontal: 15),
@@ -128,7 +124,7 @@ class LoginPage extends StatelessWidget {
                           backgroundColor: Colors.white, // text color
                           elevation: 3, // button's elevation when it's pressed
                         ),
-                        child: const Text(' 🔵🔴🟡🟢     LogIn with Google'),
+                        child: const Text(' 🇬   LogIn with Google'),
                       ),
                     ),
                     SizedBox(
