@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:notes/screens/login.dart';
 import 'package:notes/screens/verify_pw.dart';
-
 import '../screens/home.dart';
 
 class AuthWrapper extends StatelessWidget {
@@ -12,15 +11,19 @@ class AuthWrapper extends StatelessWidget {
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
+          return Center(child: CircularProgressIndicator());
         }
+
         if (!snapshot.hasData) {
           return LoginPage();
         }
+
         User? user = snapshot.data;
+
         if (user != null && !user.emailVerified) {
-          return Verify_password();
+          return EmailVerify();
         }
+
         return Home();
       },
     );
