@@ -1,16 +1,31 @@
   import 'package:flutter/material.dart';
   import 'package:google_fonts/google_fonts.dart';
   import 'package:notes/google_auth/Auth.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
-  class LoginPage extends StatelessWidget {
+  class LoginPage extends StatefulWidget {
     LoginPage({super.key});
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+    var email = TextEditingController();
+var pw = TextEditingController();
     @override
+
+    void dispose() {
+      email.dispose();
+      pw.dispose();
+      super.dispose();
+    }
+
     Widget build(BuildContext context) {
       double ht = MediaQuery.of(context).size.height;
       double wd = MediaQuery.of(context).size.width;
-      var email = TextEditingController();
-      var pw = TextEditingController();
+
 
       return Scaffold(
         body: SingleChildScrollView(
@@ -89,6 +104,11 @@
                           onPressed: () async{
                             var auth =  AuthService();
                             var user= await auth.loginWithEmail( email.text, pw.text);
+                            if(user!=null){
+                              showTopSnackBar(Overlay.of(context),displayDuration: const Duration(milliseconds: 1000),
+                                  const CustomSnackBar.success(message: "Login successful!",)
+                              );
+                            }
                           },
                           style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(
@@ -153,4 +173,4 @@
         ),
       );
     }
-  }
+}

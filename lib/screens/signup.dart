@@ -1,6 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
+import 'package:top_snackbar_flutter/safe_area_values.dart';
+import 'package:top_snackbar_flutter/tap_bounce_container.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 import '../google_auth/Auth.dart';
 
@@ -122,6 +126,9 @@ class _SignupState extends State<Signup> {
                               if (_password.text != _confirm_pw.text) {
                                 setState(() {
                                   _message = "Passwords do not match";
+                                  showTopSnackBar(Overlay.of(context),
+                                  const CustomSnackBar.error(message: "Password do not match ")
+                                  );
                                 });
                               }
                               if (_password.text == _confirm_pw.text) {
@@ -134,6 +141,12 @@ class _SignupState extends State<Signup> {
                                   setState(() {
                                     _message =
                                         'A verification email has been sent to ${_email.text}. Please verify your email before logging in.';
+
+                                    showTopSnackBar(Overlay.of(context),
+                                        const CustomSnackBar.success(message: "Verification email sent!")
+                                    );
+
+                                    Navigator.pop(context);
                                   });
                                 }
                               }
